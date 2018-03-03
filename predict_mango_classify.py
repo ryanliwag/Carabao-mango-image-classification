@@ -126,7 +126,6 @@ def draw_boxes_scores(frame, box_array, score_array, ripe_array, quality_array):
 	   		   font= ImageFont.truetype("arial.ttf", 15), fill="blue")
 	draw.text((int(box_array[0]),int(box_array[2]-43)), "Ripeness:{}".format(ripeness_dict[int(np.argmax(ripe_array, axis=1))]), 
 	  		   font= ImageFont.truetype("arial.ttf", 15), fill="blue")
-	frame.show()
 	frame.save("tmp.png")
 
 class MyThread(threading.Thread):
