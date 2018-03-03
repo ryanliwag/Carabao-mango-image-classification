@@ -20,13 +20,13 @@ def get_args():
         '-m1', '--mtl', type=str, help='MTL model location', required=True)
     parser.add_argument(
         '-m2', '--ssd', type=str, help='SSD model location', required=True)
-    # Array for all arguments passed to script
+
     args = parser.parse_args()
-    # Assign args to variables
+
     image = args.image
     mtl = args.mtl
     ssd = args.ssd
-    # Return all variable values
+
     return image, mtl, ssd
 
 # Prevent use of GPU and only use CPU
@@ -97,7 +97,6 @@ class Import_MTL():
 							 self.y_pred_ripeness],
 							 feed_dict={self.x: image_rgb})
 
-
 def get_box(boxes, scores, image):
 
 	boxes = np.squeeze(boxes)
@@ -115,8 +114,6 @@ def get_box(boxes, scores, image):
 
 	return box, score
 
-
-
 def draw_boxes_scores(frame, box_array, score_array, ripe_array, quality_array):
 	ripeness_dict = {0: 'Green', 1: 'Semi-Ripe', 2: 'Ripe'}
 	quality_dict = {0: 'Good', 1: 'Defect'}
@@ -131,7 +128,6 @@ def draw_boxes_scores(frame, box_array, score_array, ripe_array, quality_array):
 	  		   font= ImageFont.truetype("arial.ttf", 15), fill="blue")
 	frame.show()
 	frame.save("tmp.png")
-
 
 class MyThread(threading.Thread):
 
@@ -166,6 +162,7 @@ class MyThread(threading.Thread):
 
 	def terminate(self):
 		self.stop.set()
+
 def main():
 	image, mtl, ssd = get_args()
 	img = Image.open(image)

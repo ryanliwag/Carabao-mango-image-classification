@@ -35,19 +35,11 @@ def convert_sizes(size):
 	elif size < 199:
 		return "small"
 
-
 def predict_size(x_input):
     # input: [width, length, thickness]
     # output: [size, size_classification]
     x_input = normalize_size(x_input)
     graph = load_graph("frozen_models/LR_frozen_model.pb")
-
-    #identify variables and operations
-    '''
-    for op in graph.get_operations():
-        print(op.name)
-        print(op.values)
-    '''
 
     #input and output node
     x = graph.get_tensor_by_name('prefix/x:0')

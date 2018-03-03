@@ -9,7 +9,6 @@ import imutils
 import cv2
 import os
 
-
 from mango_parameters import *
 
 import tensorflow as tf
@@ -18,12 +17,9 @@ import collections
 from mango_parameters import *
 from size_classifier import *
 
-
 import threading
 
-
 import time
-
 
 class Import_Frcnn():
 	def __init__(self, location):
@@ -47,7 +43,6 @@ class Import_Frcnn():
 		image_np = np.expand_dims(frame, axis = 0)
 		return self.sess.run([self.detection_boxes, self.detection_scores, self.detection_classes, self.num_detections],feed_dict={self.image_tensor: image_np})
 
-
 class Import_MTL():
 
 	def __init__(self, location):
@@ -69,7 +64,6 @@ class Import_MTL():
 		image_rgb = np.expand_dims(image_rgb, axis = 0)
 		return self.sess.run([self.y_pred_quality, self.y_pred_ripeness], feed_dict={self.x: image_rgb})
 
-
 def get_box(boxes, scores, image):
 	boxes = np.squeeze(boxes)
 	height, width = image.shape[:2]
@@ -82,7 +76,6 @@ def get_box(boxes, scores, image):
 
 	return box, score
 
-	
 class MyThread(threading.Thread):
 	def __init__(self):
 		threading.Thread.__init__(self)
@@ -121,7 +114,6 @@ class MyThread(threading.Thread):
 	def terminate(self):
 		self.stop.set()
 
-
 def draw_boxes_scores(box_array, score_array, ripe_array, quality_array, frame):
 	ripeness_dict = {0: 'Green', 1: 'Semi-Ripe', 2: 'Ripe'}
 	quality_dict = {0: 'Good', 1: 'Defect'}
@@ -130,12 +122,6 @@ def draw_boxes_scores(box_array, score_array, ripe_array, quality_array, frame):
 	cv2.putText(frame, "Quality:  {}".format(quality_dict[int(np.argmax(quality_array, axis=1))]), (10, 32), cv2.FONT_HERSHEY_TRIPLEX, 0.6, (0,0,0))
 	cv2.putText(frame, "Ripeness:  {}".format(ripeness_dict[int(np.argmax(ripe_array, axis=1))]), (10, 48), cv2.FONT_HERSHEY_TRIPLEX, 0.6, (0,0,0))
 	return frame, quality_dict[int(np.argmax(quality_array, axis=1))], ripeness_dict[int(np.argmax(ripe_array, axis=1))]
-
-
-
-
-
-
 
 class PhotoBoothApp:
 	def __init__(self, vs):
@@ -151,14 +137,11 @@ class PhotoBoothApp:
 		self.root = tki.Tk()
 		self.panel = None
 
-
 		#self.arduinos = arduino("/dev/ttyUSB0", 9600)
 		self.yo_thread = MyThread()
 
-
 		w = tki.Label(self.root, text="Mango AI")
 		w.pack()
-
 
 		self.r = tki.Label(self.root, text="ripeness:")
 		self.q = tki.Label(self.root, text="quality:")
@@ -166,7 +149,6 @@ class PhotoBoothApp:
 		self.r.pack()
 		self.q.pack()
 		self.s.pack()
-
 
 		# create a button, that when pressed, will take the current
 		# frame and save it to file
@@ -183,30 +165,21 @@ class PhotoBoothApp:
 		btn.pack(side="bottom", fill="both", expand="yes", padx=10,
 			pady=10)
 
-
-
 		self.stopEvent = threading.Event()
 		self.thread = threading.Thread(target=self.videoLoop)
 		self.thread.start()
 
 	def videoLoop(self):
-		# DISCLAIMER:
-		# I'm not a GUI developer, nor do I even pretend to be. This
-		# try/except statement is a pretty ugly hack to get around
-		# a RunTime error that Tkinter throws due to threading
-
-
+		# This try/except statement is a pretty ugly hack to get around
+		# a RunTime error that Tkinter throws due to threading 
+		# If possible, look for a possible solution around this
 		try:
 			# keep looping over frames until we are instructed to stop
 			while not self.stopEvent.is_set():
 				# grab the frame from the video stream and resize it to
-				# have a maximum width of 300 pixels
 				self.frame = self.vs.read()
 				self.frame = imutils.resize(self.frame, width=300)
-		
-				# OpenCV represents images in BGR order; however PIL
-				# represents images in RGB order, so we need to swap
-				# the channels, then convert to PIL and ImageTk format
+
 		except RuntimeError:
 			print("[INFO] caught a RuntimeError")
 
@@ -214,7 +187,6 @@ class PhotoBoothApp:
 	def run_process(self):
 		images  = None
 		images, quality, ripeness, size = self.get_image()
-
 
 		if quality[0] == quality[1]:
 			qus = quality[0]
@@ -225,9 +197,6 @@ class PhotoBoothApp:
 			ripss = ripeness[0]
 		else:
 			ripss = "Semi-Ripe"
-
-
-
 
 		if images:
 			if self.panel is None:
@@ -294,16 +263,13 @@ class PhotoBoothApp:
 		self.vs.stop()
 		self.root.quit()
 
-
-
 from imutils.video import VideoStream
 import time
  
-
 print("[INFO] warming up camera...")
 vs = VideoStream(0).start()
 time.sleep(2.0)
- 
+
 # start the app
 pba = PhotoBoothApp(vs)
 pba.root.mainloop()

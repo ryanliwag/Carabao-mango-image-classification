@@ -40,7 +40,6 @@ def midpoint(ptA, ptB):
 
 def get_size(image_frame, calibrated_pxm):
 	#This function returns Y dimension, X dimension, Area, midx, midy, 
-
 	gray = cv2.cvtColor(image_frame, 
 						cv2.COLOR_BGR2GRAY)
 	cv2.imwrite("gray.png", gray)
@@ -51,10 +50,7 @@ def get_size(image_frame, calibrated_pxm):
 	canny = cv2.Canny(gray, 50, 100)
 	edged = cv2.dilate(canny, None, iterations=1)
 	edged = cv2.erode(edged, None, iterations=1)
-	#cv2.imwrite("edged.png", edged)	
-	#uncomment to see processed image
-	#cv2.imwrite("gray_1.png", image_frame)
-	#cv2.imwrite("canny.png", canny)
+
 	#Find contours
 	(_,cnts,_) = cv2.findContours(edged, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
@@ -69,12 +65,8 @@ def get_size(image_frame, calibrated_pxm):
 
 	#largest Contour
 	c = sorteddata[0][1] 
-	print("AREA:",c)
 	x,y,w,h = cv2.boundingRect(c)
 	
-
-
-
 	#compute distance x and y
 	dA = w
 	dB = h
