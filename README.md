@@ -5,15 +5,15 @@ ___
 
 ## Mango Ripness and Quality Classification 
 
-GIF Links ![1][vid1], ![2][vid1], ![3][vid1], ![4][vid1]!!!
+Sample Demo GIF Links ![1][vid1], ![2][vid1], ![3][vid1], ![4][vid1]!!!
 
 ### ML Pipeline
 
-![](https://github.com/ryanliwag/Deep-MTL-CNN-Mango/tree/master/gifs_images/ML_pipeline_2.png)
+![pipeline](gifs_images/ML_pipeline_2.png)
 
 ### Architecture
 
-![](https://github.com/ryanliwag/Deep-MTL-CNN-Mango/tree/master/gifs_images/ML_pipeline.png)
+![architecture](gifs_images/ML_pipeline.png)
 
 ### Demo using Docker
 
@@ -38,7 +38,7 @@ docker run -v <repository path on host>:/app:rw --rm app -i <image path within t
 
 Using one of the test images, inside this repository (gifs_images/test_1.jpeg)
 
-![](https://github.com/ryanliwag/Deep-MTL-CNN-Mango/tree/master/gifs_images/test_2.jpeg)
+![test_img](gifs_images/test_2.jpeg)
 
 Run on the Command Line
 ```
@@ -47,7 +47,7 @@ docker run -v /home/elements/Desktop/github-shit/Deep-MTL-CNN-Mango:/app:rw --rm
 
 It will save the output as tmp.png in the directory path
 
-![](https://github.com/ryanliwag/Deep-MTL-CNN-Mango/tree/master/gifs_images/output.png)
+![output_img](gifs_images/output.png)
 
 
 [vid1]: https://github.com/ryanliwag/Deep-MTL-CNN-Mango/tree/master/gifs_images/video_1.gif "Video 1"
