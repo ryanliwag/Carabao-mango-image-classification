@@ -7,6 +7,10 @@ ___
 
 Sample Demo GIF Links ![1][vid1], ![2][vid1], ![3][vid1], ![4][vid1]!!!
 
+Sample image of GUI. 
+
+![gui](gifs_images/demo_1.png)
+
 ### ML Pipeline
 
 ![pipeline](gifs_images/ML_pipeline_2.png)
