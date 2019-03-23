@@ -1,6 +1,6 @@
 # Deep-MTL-CNN-Mango
 
-My undergraduate thesis, where I attept to classify mangoes by quality, ripeness and Size.
+My undergraduate thesis, attept to classify mangoes by quality, ripeness and Size.
 ___
 
 ## Mango Ripness and Quality Classification 
@@ -20,8 +20,6 @@ Sample image of GUI.
 ![architecture](gifs_images/ML_pipeline.png)
 
 ### Demo using Docker
-
-This dockerfile I made is for demo purposes.
 
 First Clone the Repository
 ```
