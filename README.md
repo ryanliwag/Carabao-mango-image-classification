@@ -1,6 +1,6 @@
 # Deep-MTL-CNN-Mango
 
-My undergraduate thesis, attept to classify mangoes by quality, ripeness and Size.
+undergraduate thesis, attept to classify mangoes by quality, ripeness and Size.
 ___
 
 ## Mango Ripness and Quality Classification 
